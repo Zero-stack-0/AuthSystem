@@ -44,5 +44,14 @@ namespace AuthSystem.Repository
                 return Task.FromResult<Users?>(null);
             }
         }
+
+        public Task<Users?> GetByEmailAndPassword(string email, string password)
+        {
+            var user = _context.Users
+                .Where(x => x.Email == email && x.Password == password && x.IsActive)
+                .FirstOrDefaultAsync();
+
+            return user;
+        }
     }
 }

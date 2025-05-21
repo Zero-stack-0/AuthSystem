@@ -1,39 +1,41 @@
 <div *ngIf="isApiError">
-    <div class="alert alert-danger d-flex align-items-center" role="alert">
-        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-            <use xlink:href="#exclamation-triangle-fill" />
-        </svg>
-        <div>
-            {{ apiErrorMessage }}
-        </div>
+
+    <div>
+        {{ apiErrorMessage }}
     </div>
 </div>
 
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-    <label>FristName:</label>
-    <input type="text" formControlName="firstName" />
-    <div *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched">
-        Enter valid first name.
-    </div>
+<body>
+    <div class="signup-container">
+        <h2>Create Account</h2>
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" formControlName="firstName" placeholder="John" required />
+            </div>
 
-    <label>LastName:</label>
-    <input type="lastName" formControlName="lastName" />
-    <div *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched">
-        Enter a valid last name.
-    </div>
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" formControlName="lastName" placeholder="Doe" required />
+            </div>
 
-    <label>Email:</label>
-    <input type="email" formControlName="email" />
-    <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
-        Enter a valid email.
-    </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" formControlName="email" placeholder="you@example.com" required />
+            </div>
 
-    <label>Password:</label>
-    <input type="password" formControlName="password" />
-    <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched">
-        Enter a valid password.
-    </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" placeholder="••••••••" required />
+            </div>
 
-    <button type="submit" [disabled]="userForm.invalid">Submit</button>
-</form>
+
+
+            <button class="submit-btn" type="submit" [disabled]="userForm.invalid">Submit</button>
+            <div class="bottom-text">
+                Already have an account? <a [routerLink]="'/login'">Log in</a>
+            </div>
+        </form>
+    </div>
+</body>
 <router-outlet></router-outlet>
