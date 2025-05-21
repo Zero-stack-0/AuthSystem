@@ -1,3 +1,4 @@
+using AuthSystem.Dto.Request;
 using AuthSystem.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +24,17 @@ namespace AuthSystem.Controller
                 return NotFound();
             }
             return Ok(user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest userRequest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return Ok(await _userService.CreateUser(userRequest));
         }
     }
 }

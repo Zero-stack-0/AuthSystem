@@ -1,6 +1,8 @@
 using AuthSystem.Dto.Request;
 using AuthSystem.Dto.Response;
+using AuthSystem.Model;
 using AuthSystem.Repository.Interface;
+using AuthSystem.Service.Helper;
 using AuthSystem.Service.Interface;
 using AutoMapper;
 
@@ -15,9 +17,22 @@ public class UserService : IUserService
         _mapper = mapper;
     }
 
-    public async Task<UserResponse> GetUserById(int id)
+    public async Task<ApiResponse> GetUserById(int id)
     {
         var user = await _userRepository.GetById(id);
-        return _mapper.Map<UserResponse>(user);
+
+        return new ApiResponse(_mapper.Map<UserResponse>(user), 200, "User");
+    }
+
+    public async Task<ApiResponse> CreateUser(CreateUserRequest userRequest)
+    {
+        if (await _userRepository.GetByEmail(userRequest.Email) is not null)
+        {
+            return new ApiResponse(null, 400, "Email already exists");
+        }
+        var user = new Users(userRequest.FirstName, userRequest.LastName, userRequest.Email, userRequest.Password);
+
+        var userResponse = await _userRepository.CreateUser(user);
+        return new ApiResponse(_mapper.Map<UserResponse>(userResponse), 200, "User created successfully");
     }
 }

@@ -9,5 +9,7 @@ namespace AuthSystem.Repository.Interface
     public interface IUserRepository
     {
         Task<Users?> GetById(long id);
+        Task<Users?> CreateUser(Users user);
+        Task<Users?> GetByEmail(string email);
     }
 }
