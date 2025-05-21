@@ -11,5 +11,6 @@ namespace AuthSystem.Repository.Interface
         Task<Users?> GetById(long id);
         Task<Users?> CreateUser(Users user);
         Task<Users?> GetByEmail(string email);
+        Task<Users?> GetByEmailAndPassword(string email, string password);
     }
 }

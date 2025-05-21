@@ -35,4 +35,14 @@ public class UserService : IUserService
         var userResponse = await _userRepository.CreateUser(user);
         return new ApiResponse(_mapper.Map<UserResponse>(userResponse), 200, "User created successfully");
     }
+
+    public async Task<ApiResponse> GetByEmailAndPassword(string email, string password)
+    {
+        var user = await _userRepository.GetByEmailAndPassword(email, password);
+        if (user is null)
+        {
+            return new ApiResponse(null, 400, "Invalid email or password");
+        }
+        return new ApiResponse(_mapper.Map<UserResponse>(user), 200, "User");
+    }
 }

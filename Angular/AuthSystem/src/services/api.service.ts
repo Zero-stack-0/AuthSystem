@@ -11,4 +11,8 @@ export class ApiService {
   signup(data: any): Observable<any> {
     return this.http.post('http://localhost:5122/api/user', data);
   }
+
+  Login(data: any): Observable<any> {
+    return this.http.post('http://localhost:5122/api/user/login', data);
+  }
 }
