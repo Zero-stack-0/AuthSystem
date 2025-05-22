@@ -45,4 +45,14 @@ public class UserService : IUserService
         }
         return new ApiResponse(_mapper.Map<UserResponse>(user), 200, "User");
     }
+
+    public async Task<ApiResponse> GetByEmail(string email)
+    {
+        var user = await _userRepository.GetByEmail(email);
+        if (user is null)
+        {
+            return new ApiResponse(null, 400, "Invalid email or password");
+        }
+        return new ApiResponse(_mapper.Map<UserResponse>(user), 200, "User");
+    }
 }

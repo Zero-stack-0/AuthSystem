@@ -18,8 +18,8 @@ export class LoginComponent {
   login() {
     if (this.loginForm.valid) {
       this.apiService.Login(this.loginForm.value).subscribe((data) => {
-        if (data.statusCode === 400) {
-          this.router.navigate(['/Home'], { state: { user: data.data } });
+        if (data.statusCode === 200) {
+          this.router.navigate(['/Home']);
           this.loginForm.reset();
           return;
         }

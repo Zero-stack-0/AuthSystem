@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +13,20 @@ export class ApiService {
   }
 
   Login(data: any): Observable<any> {
-    return this.http.post('http://localhost:5122/api/user/login', data);
+    return this.http.post('http://localhost:5122/api/user/login', data).pipe(
+      map((response: any) => {
+        if (response?.data) {
+          console.log('Token received:', response.data);
+          localStorage.setItem('token', response.data);
+        } else {
+          console.warn('No token found in response:', response);
+        }
+        return response;
+      })
+    );
+  }
+
+  getUserDetails(): Observable<any> {
+    return this.http.get('http://localhost:5122/api/user/profile');
   }
 }

@@ -74,3 +74,4 @@
 /Users/shubhamjangid/Desktop/Angular/SignUpLogin/AuthSystem/DOTNET/AuthSystem/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
 /Users/shubhamjangid/Desktop/Angular/SignUpLogin/AuthSystem/DOTNET/AuthSystem/bin/Debug/net8.0/package-lock.json
 /Users/shubhamjangid/Desktop/Angular/SignUpLogin/AuthSystem/DOTNET/AuthSystem/bin/Debug/net8.0/package.json
+/Users/shubhamjangid/Desktop/Angular/SignUpLogin/AuthSystem/DOTNET/AuthSystem/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
