@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
@@ -8,7 +8,10 @@ import { Router } from '@angular/router';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit {
+  ngOnInit() {
+    console.log("Signup Component Initialized");
+  }
   constructor(private apiService: ApiService, private router: Router) { }
   userForm = new FormGroup({
     firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -32,7 +35,6 @@ export class SignupComponent {
         else {
           this.router.navigate(['/Home'], { state: { user: data.data } });
         }
-
       });
     }
   }

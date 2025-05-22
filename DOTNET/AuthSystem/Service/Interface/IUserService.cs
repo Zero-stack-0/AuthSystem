@@ -13,5 +13,6 @@ namespace AuthSystem.Service.Interface
         Task<ApiResponse> GetUserById(int id);
         Task<ApiResponse> CreateUser(CreateUserRequest userRequest);
         Task<ApiResponse> GetByEmailAndPassword(string email, string password);
+        Task<ApiResponse> GetByEmail(string email);
     }
 }

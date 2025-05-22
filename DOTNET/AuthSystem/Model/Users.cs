@@ -1,3 +1,5 @@
+using AuthSystem.Service.Helper;
+
 namespace AuthSystem.Model
 {
     public class Users
@@ -25,5 +27,10 @@ namespace AuthSystem.Model
         public DateTime CreateDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public bool IsActive { get; set; }
+
+        public static explicit operator Users(ApiResponse v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
